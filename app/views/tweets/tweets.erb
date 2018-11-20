@@ -1,0 +1,7 @@
+<h1>Please see all your tweets below, <%=current_user.username %></h1>
+
+<% @tweets.each do |tweet|%>
+<br>
+<%= tweet.content %>
+<br>
+<% end %>
