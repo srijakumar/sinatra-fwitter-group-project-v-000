@@ -30,12 +30,12 @@ post '/tweets' do
     #@tweet = current_user.tweet.create(params[:content])
     @tweet=Tweet.new(params)
     @tweet.id = current_user.id
-    
+
 
     #do they want to save or modify before posting?
 
-    if @tweet.save
-      redirect to '/tweets/#{@tweet.id}'
+    if logged_in? && @tweet.save
+     redirect to '/tweets/#{@tweet.id}'
     else
       redirect to '/tweets/new'
     end
