@@ -23,7 +23,9 @@ post '/tweets' do
   if params[:content] == ""
     redirect '/tweets/new'
   else
-    
+    #find the content associated with that user
+
+    @user.content
   end
 end
 
