@@ -20,13 +20,24 @@ get '/tweets/new' do
 end
 
 post '/tweets' do
+  if logged_in?
   if params[:content] == ""
     redirect '/tweets/new'
   else
     #find the content associated with that user
+    @tweet = current_user.tweet.create(params[:content])
 
-    @user.content
+    #do they want to save or modify before posting?
+
+    if @tweet.save
+      redirect to '/tweets/#{@tweet.id}'
+    else
+      redirect to '/tweets/new'
+    end
+
   end
+  redirect to '/login'
+end
 end
 
 
