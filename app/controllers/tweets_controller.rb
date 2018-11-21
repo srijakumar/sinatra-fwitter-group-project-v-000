@@ -20,21 +20,22 @@ get '/tweets/new' do
 end
 
 post '/tweets' do
-  binding.pry
+  #binding.pry
   if logged_in?
-   if params[:content] == ""
-    redirect '/tweets/new'
-  else
+    if params[:content] == ""
+      redirect '/tweets/new'
+    else
     #find the content associated with that user
 
     #@tweet = current_user.tweet.create(params[:content])
-    @tweet=Tweet.new(params)
-    @tweet.id = current_user.id
-
+    #@tweet.id = current_user.id
+    @tweet=Tweet.new(:content => params[:content], :id => current_user.id)
+    #@tweet.save
+    #redirect to '/tweets/#{@tweet.id}'
 
     #do they want to save or modify before posting?
 
-    if logged_in? && @tweet.save
+    if @tweet.save
      redirect to '/tweets/#{@tweet.id}'
     else
       redirect to '/tweets/new'
