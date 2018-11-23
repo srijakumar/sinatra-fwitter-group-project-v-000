@@ -6,7 +6,7 @@ get '/tweets' do
   if logged_in?
   #  erb :'/users/show'
    @tweets = Tweet.all
-   
+
     erb :'tweets/tweets'
   else
     redirect to '/login'
@@ -33,7 +33,7 @@ post '/tweets' do
 
 
     if @tweet.save
-     redirect to '/tweets/#{@tweet.id}'
+     redirect to "/tweets/#{@tweet.id}"
     else
       redirect to '/tweets/new'
     end
@@ -44,7 +44,7 @@ end
 end
 
 
-get '/tweet/:id' do
+get '/tweets/:id' do
   if logged_in?
     @tweet = Tweet.find_by_id(params[:id])
     erb :'tweets/show_tweet'
